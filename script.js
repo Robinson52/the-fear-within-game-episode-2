@@ -2879,11 +2879,30 @@ function transitionToHostCloseup() {
 
 
 
-        hostCloseupVideo.play().catch((error) => {
+        // Mobile browsers may delay the first decoded frame. Keep the
+        // video visible and retry playback once its data is available.
+        hostCloseupVideo.setAttribute("playsinline", "");
+        hostCloseupVideo.setAttribute("webkit-playsinline", "");
+        hostCloseupVideo.style.display = "block";
+        hostCloseupVideo.style.visibility = "visible";
+        hostCloseupVideo.style.opacity = "1";
+        hostCloseupVideo.style.width = "100%";
+        hostCloseupVideo.style.height = "100%";
+        hostCloseupVideo.style.objectFit = "cover";
+        hostCloseupVideo.load();
 
-            console.warn("Host close-up video could not play:", error);
-
-        });
+        const playHostCloseup = () => {
+            if (hostCloseupScene.hidden) return;
+            hostCloseupVideo.play().catch((error) => {
+                console.warn("Host close-up video playback delayed:", error);
+            });
+        };
+        if (hostCloseupVideo.readyState >= 2) {
+            playHostCloseup();
+        } else {
+            hostCloseupVideo.addEventListener("loadeddata", playHostCloseup, { once: true });
+            hostCloseupVideo.addEventListener("canplay", playHostCloseup, { once: true });
+        }
 
 
 
