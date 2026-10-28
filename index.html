@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fear Within | Episode 2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+<style id="episode2-finale-styles">
+#episode2-finale:not([hidden]){position:fixed;inset:0;z-index:200500;background:#000;color:#f2f2f2;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Georgia,serif}
+#episode2-final-words{width:min(850px,88vw);font-size:clamp(19px,2.4vw,31px);line-height:1.65;white-space:pre-wrap;text-shadow:0 0 12px #ffffff20}
+#episode2-suit-video:not([hidden]){position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+#episode2-end-card{padding:24px;letter-spacing:4px;animation:ep2fade 2s ease both}
+#episode2-end-card h1{font-size:clamp(30px,5vw,68px);margin-bottom:30px}
+#episode2-end-card p{font-size:clamp(14px,2vw,23px);margin:18px}
+@keyframes ep2fade{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+
+<body>
+    <main>
+
+        <!-- MAIN MENU -->
+
+        <section id="title-screen">
+            <video
+                id="menu-background-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                aria-hidden="true">
+                <source src="video/tv_static_loop.mp4" type="video/mp4">
+            </video>
+
+            <div class="menu-background-shade" aria-hidden="true"></div>
+
+            <p class="author-name">China Robinson</p>
+
+            <h1>The Fear Within</h1>
+
+            <p class="subtitle">
+                A short interactive horror experience
+            </p>
+
+            <nav class="game-menu" aria-label="Main menu">
+                <button id="start-button" type="button">
+                    Start Episode 2
+                </button>
+
+                <a id="episode1-link" href="#">
+                    Play Episode 1
+                </a>
+
+                <button
+                    id="help-button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="help-text">
+                    How to Play
+                </button>
+            </nav>
+
+            <p id="menu-audio-hint">
+                Click anywhere to enable audio.
+                <span>Headphones recommended.</span>
+            </p>
+
+            <p id="help-text" hidden>
+                Click Continue to follow Raven's story
+                and explore the unfolding mystery.
+            </p>
+
+            <p class="credit">
+                Based on the novel by China Robinson
+            </p>
+        </section>
+
+        <!-- EPISODE 2 CINEMATIC TITLE -->
+
+        <section id="episode-screen" hidden aria-label="Episode 2">
+            <div class="episode-title-content">
+                <h2 data-text="The Fear Within">
+                    The Fear Within
+                </h2>
+                <p data-text="Episode 2">
+                    Episode 2
+                </p>
+            </div>
+        </section>
+
+        <!-- SCENE 1 - RAVEN'S BEDROOM -->
+
+        <section id="episode2-opening" hidden>
+            <div class="episode2-scene">
+                <img
+                    class="episode2-image"
+                    src="images/Raven in Bed morning.jpg"
+                    alt="Morning sunlight in Raven's bedroom">
+
+                <div class="episode2-dialogue">
+                    <p id="episode2-text" aria-live="off"></p>
+
+                    <button
+                        id="episode2-continue"
+                        type="button"
+                        hidden>
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 2 - PHONE BUZZING -->
+
+        <section id="next-scene" hidden>
+            <div class="phone-scene">
+                <video
+                    id="phone-video"
+                    class="phone-video"
+                    muted
+                    playsinline
+                    preload="auto">
+                    <source
+                        src="video/phone_buzz_bubble.mp4"
+                        type="video/mp4">
+                </video>
+
+                <button
+                    id="phone-objective"
+                    class="phone-pickup-button"
+                    type="button"
+                    hidden>
+                    Pick up phone
+                </button>
+
+                <button id="phone-back" type="button">
+                    ← Back
+                </button>
+
+                <div class="phone-dialogue">
+                    <p id="phone-text" aria-live="off"></p>
+
+                    <div class="scene-controls">
+                        <button
+                            id="phone-continue"
+                            type="button"
+                            hidden>
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 3 - PHONE NOTIFICATION -->
+
+        <section id="phone-notification-scene" hidden>
+            <div class="phone-scene">
+                <img
+                    class="phone-video"
+                    src="images/Morning Portfolio Pickup Notification.jpg"
+                    alt="Raven reading a campus portfolio pickup notification">
+
+                <button id="notification-back" type="button">
+                    ← Back
+                </button>
+
+                <div class="phone-dialogue">
+                    <p
+                        id="phone-notification-text"
+                        aria-live="off">
+                    </p>
+
+                    <div class="scene-controls">
+                        <button
+                            id="phone-notification-continue"
+                            type="button"
+                            hidden>
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 4 - MEDICINE CABINET -->
+
+        <section id="bathroom-scene" hidden>
+            <div class="bathroom-image-container">
+                <img
+                    id="bathroom-image"
+                    src="images/Raven opening the medicine cabinet.jpg"
+                    alt="Raven opening her bathroom medicine cabinet">
+
+                <button
+                    id="take-pill-button"
+                    type="button"
+                    hidden>
+                    Take Pill
+                </button>
+
+                <div class="bathroom-dialogue">
+                    <p id="bathroom-text" aria-live="off"></p>
+
+                    <button
+                        id="bathroom-continue"
+                        type="button"
+                        hidden>
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 5 - TOOTHBRUSH DISTURBANCE -->
+
+        <section
+            id="toothbrush-scene"
+            hidden
+            aria-label="Raven's bathroom disturbance">
+
+            <div class="horror-scene-container">
+                <img
+                    id="toothbrush-image"
+                    class="horror-scene-image"
+                    src="images/Golden Hour Toothbrush Ritual.jpg"
+                    alt="Raven reaching for her toothbrush">
+            </div>
+        </section>
+
+        <!-- SCENE 6 - ANIMATED TELEVISION STATIC -->
+
+        <section
+            id="tv-static-scene"
+            hidden
+            aria-label="The television turns on">
+
+            <div class="horror-scene-container">
+                <video
+                    id="tv-static-image"
+                    class="horror-scene-image"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-label="A television displaying animated static">
+
+                    <source
+                        src="video/tv_static_animated.mp4"
+                        type="video/mp4">
+                </video>
+
+                <div
+                    id="tv-static-dialogue"
+                    class="horror-scene-dialogue"
+                    hidden>
+                    <p id="tv-static-text" aria-live="off"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 7 - MYSTERIOUS HOST -->
+
+        <section
+            id="mysterious-man-scene"
+            hidden
+            aria-label="A mysterious host appears on television">
+
+            <div class="horror-scene-container">
+                <video
+                    id="mysterious-man-video"
+                    class="horror-scene-image"
+                    muted
+                    loop
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="video/host_talking.mp4"
+                        type="video/mp4">
+                </video>
+
+                <button
+                    id="watch-man-button"
+                    type="button"
+                    hidden>
+                    Watch the man
+                </button>
+
+                <div
+                    id="mysterious-man-dialogue"
+                    class="horror-scene-dialogue"
+                    hidden>
+                    <p
+                        id="mysterious-man-text"
+                        aria-live="off">
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 8 - SHADOW AUDIENCE -->
+
+        <section
+            id="shadow-audience-scene"
+            hidden
+            aria-label="A shadowy audience appears on television">
+
+            <div class="horror-scene-container">
+                <img
+                    id="shadow-audience-image"
+                    class="horror-scene-image"
+                    src="images/Anime Stage Performance on TV.jpg"
+                    alt="An old television stage with shadowy audience figures">
+
+                <div
+                    id="shadow-audience-dialogue"
+                    class="horror-scene-dialogue">
+
+                    <p
+                        id="shadow-audience-text"
+                        aria-live="off">
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 9 - HOST CLOSEUP -->
+
+        <section
+            id="host-closeup-scene"
+            hidden
+            aria-label="The television host looks into the camera">
+
+            <div class="horror-scene-container">
+                <video
+                    id="host-closeup-video"
+                    class="horror-scene-image"
+                    muted
+                    loop
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="video/man_in_suit_talking.mp4"
+                        type="video/mp4">
+                </video>
+
+                <div
+                    id="host-closeup-dialogue"
+                    class="horror-scene-dialogue"
+                    hidden>
+
+                    <p
+                        id="host-closeup-text"
+                        aria-live="polite">
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 10 - GLOWING RED EYES -->
+
+        <section
+            id="glowing-eyes-scene"
+            hidden
+            aria-label="Glowing red eyes blink in the audience">
+
+            <div class="horror-scene-container">
+                <video
+                    id="glowing-eyes-video"
+                    class="horror-scene-image"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="video/crowd_eyes_blinking.mp4"
+                        type="video/mp4">
+                </video>
+
+                <div id="back-away-prompt" hidden>
+                    PRESS SPACE TO BACK AWAY
+
+                    <span id="back-away-progress">
+                        0 / 5
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 11 - SINISTER HOST -->
+
+        <section
+            id="sinister-host-scene"
+            hidden
+            aria-label="The sinister television host stares at Raven">
+
+            <div class="horror-scene-container">
+                <video
+                    id="sinister-host-video"
+                    class="horror-scene-image"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="video/host_smile_blink.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <!-- SCENE 12 - TV TURNS OFF -->
+
+        <section
+            id="tv-turn-off-scene"
+            hidden
+            aria-label="The television returns to static and switches off">
+
+            <div class="horror-scene-container">
+                <video
+                    id="tv-turn-off-video"
+                    class="horror-scene-image"
+                    muted
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="video/tv_turn_off.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <!-- SCENE 13 - ELLIE'S PHONE CALL -->
+
+        <section
+            id="ellie-phone-call-scene"
+            hidden
+            aria-label="Raven receives a phone call from Ellie">
+
+            <div class="horror-scene-container">
+
+                <img
+                    id="ellie-bedroom-pov"
+                    class="horror-scene-image"
+                    src="images/Moody Anime Bedroom at Night.jpg"
+                    alt="Raven sitting on the edge of her bed">
+
+                <img
+                    id="ellie-tv-glance-image"
+                    class="horror-scene-image"
+                    src="images/Sunlit Cozy TV Nook.jpg"
+                    alt="Raven glances at the powered-off television"
+                    hidden>
+
+                <div class="horror-scene-dialogue">
+                    <p
+                        id="ellie-phone-call-text"
+                        aria-live="polite">
+                    </p>
+
+                    <button
+                        id="answer-ellie-button"
+                        type="button"
+                        hidden>
+                        Answer Phone
+                    </button>
+
+                    <button
+                        id="glance-tv-button"
+                        type="button"
+                        hidden>
+                        Glance at TV
+                    </button>
+
+                    <button
+                        id="continue-ellie-conversation"
+                        type="button"
+                        hidden>
+                        Continue Conversation
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCENE 14 - PARTY PHOTOS -->
+
+        <section
+            id="party-photos-scene"
+            hidden
+            aria-label="Raven looks through party photos">
+
+            <div class="horror-scene-container">
+                <img
+                    id="party-photo-image"
+                    class="horror-scene-image"
+                    src="images/Late-Night Party Glow from Bed.jpg"
+                    alt="Raven viewing party photos">
+
+                <div class="horror-scene-dialogue">
+                    <p
+                        id="party-photo-text"
+                        aria-live="polite">
+                    </p>
+
+                    <button
+                        id="party-scroll-button"
+                        type="button"
+                        hidden>
+                        Scroll
+                    </button>
+                </div>
+            </div>
+        </section>
+
+<!-- RAVEN'S KITCHEN — CONTACTS -->
+<section id="kitchen-contact-scene" hidden>
+    <img
+        id="kitchen-contact-image"
+        src="images/Morning Kitchen Contact Call.jpg"
+        alt="Raven holding her phone at the kitchen table"
+    >
+
+   
+<button id="tap-mom-contact" type="button">
+    Call Mom
+</button>
+</section>
+
+
+    </main>
+
+    <!-- GAME AUDIO -->
+
+    <audio
+        id="intro-music"
+        src="audio/eerie music.mp3"
+        loop
+        preload="auto">
+    </audio>
+
+    <audio id="calm-music" loop preload="auto">
+        <source
+            src="audio/soul_frequencies-ambient-meditation-music-498455.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- CALM METER NOTIFICATION TONE -->
+    <audio id="calm-meter-tone" src="audio/calm-meter-tone.mp3" preload="auto"></audio>
+
+    <audio id="typing-sound" preload="auto">
+        <source
+            src="audio/dragon-studio-keyboard-typing-sound-effect-335503.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="raven-yawn" preload="auto">
+        <source
+            src="audio/freesound_community-yawning-6096.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="phone-vibration" preload="auto">
+        <source
+            src="audio/universfield-cell-phone-vibration-352298.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="cabinet-sound" preload="auto">
+        <source
+            src="audio/freesound_community-cabinet-door-open-100526.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="taking-pills-sound" preload="auto">
+        <source
+            src="audio/freesound_community-takingpills-82988.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="raven-normal-voice" preload="auto">
+        <source
+            src="audio/ElevenLabs_2026-10-12T21_38_19_Natasha - Upset, Clear and Serious_pvc_sp100_s50_sb75_v4.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="cabinet-close-sound" preload="auto">
+        <source
+            src="audio/freesound_community-cabinet-door-close-47724.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- HORROR AUDIO -->
+
+    <audio id="horror-static-sound" preload="auto">
+        <source
+            src="audio/freesound_community-jump-scare-73924.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="man-suspense-music" loop preload="auto">
+        <source
+            src="audio/universfield-eerie-horror-suspense-505511.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="audience-laugh-track" preload="auto">
+        <source
+            src="audio/artificiallyinspired-90s-sitcom-laugh-track-v2-353986.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- HOST VOICES -->
+
+    <audio id="host-greeting-voice" preload="auto">
+        <source
+            src="audio/ElevenLabs_2026-10-12T23_39_42_Dave - Male Deep Voice - for Media and AI_pvc_sp100_s100_sb90_v4.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <audio id="host-question-voice" preload="auto">
+        <source
+            src="audio/ElevenLabs_2026-10-12T23_40_36_Dave - Male Deep Voice - for Media and AI_pvc_sp100_s100_sb90_v4.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- RAVEN BREATHING -->
+
+    <audio id="raven-heavy-breathing" loop preload="auto">
+        <source
+            src="audio/freesound_community-heavy-breathing-14431.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- HEARTBEAT -->
+
+    <audio
+        id="raven-heartbeat"
+        src="audio/lenspulse-intense-cinematic-heartbeat-sound-effect-584627.mp3"
+        preload="auto"
+        loop>
+    </audio>
+
+    <!-- TV STATIC -->
+
+    <audio
+        id="tv-static-noise"
+        src="audio/u_xg7ssi08yr-static-noise-437703.mp3"
+        preload="auto"
+        loop>
+    </audio>
+
+    <!-- ELLIE PHONE CALL -->
+
+    <audio
+        id="ellie-phone-ringtone"
+        src="audio/freesound_community-original-phone-ringtone-36558.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="raven-hello-voice"
+        src="audio/ElevenLabs_2026-10-14T00_09_06_Natasha - Upset, Clear and Serious_pvc_sp100_s50_sb75_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="raven-phone-reply-voice"
+        src="audio/ElevenLabs_2026-10-14T00_10_51_Natasha - Upset, Clear and Serious_pvc_sp100_s50_sb75_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="ellie-phone-voice"
+        src="audio/ElevenLabs_2026-10-14T00_15_47_Isla Sterling - Engaging Audiobook Narrator_pvc_sp91_s29_sb56_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <!-- NEW VOICE RECORDINGS -->
+
+    <audio
+        id="ellie-serious-voice"
+        src="audio/ElevenLabs_2026-10-15T21_44_41_Isla Sterling - Engaging Audiobook Narrator_pvc_sp91_s29_sb56_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="raven-wait-what-voice"
+        src="audio/ElevenLabs_2026-10-15T21_51_56_Natasha - Upset, Clear and Serious_pvc_sp100_s50_sb75_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="ellie-shoulder-voice"
+        src="audio/ElevenLabs_2026-10-15T21_50_29_Isla Sterling - Engaging Audiobook Narrator_pvc_sp91_s29_sb56_v4.mp3"
+        preload="auto">
+    </audio>
+
+    <!-- NEW SOFT HORROR BACKGROUND MUSIC -->
+
+    <audio
+        id="ellie-call-atmosphere"
+        src="audio/universfield-horror-background-atmosphere-026-30-352879.mp3"
+        loop
+        preload="auto">
+    </audio>
+
+<!-- ==========================================
+     RAVEN'S RIDESHARE APP — LIGHT MAP
+========================================== -->
+<section id="rideshare-scene" hidden>
+    <div class="rideshare-phone">
+        <div class="rideshare-header">
+            <span class="rideshare-logo">🚘 RideShare</span>
+            <span class="rideshare-time">9:27 AM</span>
+        </div>
+
+        <div class="rideshare-map" style="background:#eef1f2; overflow:hidden;">
+            <svg viewBox="0 0 340 220" preserveAspectRatio="xMidYMid meet"
+                 role="img" aria-label="Map showing Leo's car approaching Raven's pickup location">
+                <!-- Neighborhood blocks, lawns and park areas -->
+                <rect width="340" height="220" fill="#edf0ed"/>
+                <path d="M8 8H112V90H8Z M147 12H209V87H147Z M247 12H333V86H247Z"
+                      fill="#e0e8dc"/>
+                <path d="M10 126H112V164H10Z M148 130H207V210H148Z M248 130H331V211H248Z"
+                      fill="#e4e9e2"/>
+                <path d="M272 12h58v66h-58z" fill="#d4e6cf"/>
+                <!-- Smaller residential streets -->
+                <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round">
+                    <path d="M0 15H340 M0 77H340 M0 145H340 M0 211H340"/>
+                    <path d="M17 0V220 M91 0V220 M171 0V220 M283 0V220"/>
+                    <path d="M91 77L171 145 M171 77L283 145"/>
+                </g>
+                <!-- Main streets; keep route geometry aligned with these -->
+                <g fill="none" stroke="#ffffff" stroke-width="17">
+                    <path d="M0 40H340 M0 110H340 M0 180H340"/>
+                    <path d="M50 0V220 M130 0V220 M230 0V220"/>
+                </g>
+                <g fill="none" stroke="#d9dee2" stroke-width="1.2" opacity=".75">
+                    <path d="M0 40H340 M0 110H340 M0 180H340"/>
+                    <path d="M50 0V220 M130 0V220 M230 0V220"/>
+                </g>
+                <!-- Street labels -->
+                <g fill="#879098" font-family="Arial, sans-serif" font-size="8.5">
+                    <text x="7" y="33">PINE ST</text>
+                    <text x="245" y="102">MAPLE AVE</text>
+                    <text x="6" y="173">OAK STREET</text>
+                    <text x="58" y="72" transform="rotate(-90 58 72)">NORTH RD</text>
+                    <text x="238" y="208" transform="rotate(-90 238 208)">CEDAR LN</text>
+                    <text x="290" y="29" fill="#72916d">PARK</text>
+                </g>
+                <!-- Blue route: ID and path retained for script.js animation -->
+                <path id="rideshare-route"
+                      d="M50 180 L130 180 L130 110 L230 110 L230 40"
+                      fill="none" stroke="#fff" stroke-width="10"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M50 180 L130 180 L130 110 L230 110 L230 40"
+                      fill="none" stroke="#2587d9" stroke-width="6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Raven's pickup point -->
+                <circle cx="230" cy="40" r="14" fill="#2587d9" opacity=".16"/>
+                <circle cx="230" cy="40" r="8" fill="#2587d9" stroke="#fff" stroke-width="3"/>
+                <g transform="translate(244 19)">
+                    <rect width="78" height="18" rx="9" fill="#fff" stroke="#dbe1e5"/>
+                    <text x="39" y="12" text-anchor="middle" fill="#35424b"
+                          font-family="Arial, sans-serif" font-size="9">Pickup</text>
+                </g>
+                <!-- Leo's grey sedan: ID retained for animated movement -->
+                <g id="rideshare-car" transform="translate(50 180)">
+                    <circle r="15" fill="#fff" stroke="#cbd4db" stroke-width="1.5"/>
+                    <g transform="rotate(-90)">
+                        <rect x="-11" y="-6.5" width="22" height="13" rx="5" fill="#78858e" stroke="#3d4951" stroke-width="1"/>
+                        <rect x="-4" y="-5" width="9" height="10" rx="2" fill="#cbdde7"/>
+                        <path d="M-7 -5V5 M8 -5V5" stroke="#52606a" stroke-width="1"/>
+                        <rect x="-9" y="-7.5" width="5" height="2" rx="1" fill="#dbe5ea"/>
+                        <rect x="-9" y="5.5" width="5" height="2" rx="1" fill="#dbe5ea"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div class="rideshare-details">
+            <p class="rideshare-status">Your driver is on the way</p>
+            <div class="rideshare-driver">
+                <div>
+                    <h2>Leo</h2>
+                    <p>Grey sedan</p>
+                </div>
+                <div class="rideshare-arrival">
+                    <strong id="rideshare-eta">3 min</strong>
+                    <span>away</span>
+                </div>
+            </div>
+        </div>
+
+        <p id="rideshare-narration">
+            I opened the rideshare app and watched the little car icon move closer to my street.
+        </p>
+        <button id="rideshare-continue" type="button" hidden>Continue →</button>
+    </div>
+</section>
+
+<!-- RAVEN GETTING READY -->
+<section id="raven-getting-ready-scene" hidden>
+    <button id="getting-ready-skip" class="cinematic-skip" type="button">
+    Skip ⏭
+</button>
+    <div class="getting-ready-content">
+        <p id="getting-ready-text"></p>
+    </div>
+</section>
+
+<!-- RAVEN WALKS TO LEO'S CAR -->
+<section id="leo-car-scene" hidden>
+
+    <button id="leo-car-skip" class="cinematic-skip" type="button">
+        Skip ⏭
+    </button>
+
+    <img
+        id="leo-car-image"
+        src="images/Leo in Parking Lot.jpg"
+        alt="Leo's silver sedan parked outside the apartment"
+    >
+
+    <button id="leo-car-continue" type="button" hidden>
+        Continue
+    </button>
+
+</section>
+<!-- LEO WAITING IN THE PARKING LOT -->
+<section id="leo-parking-lot-scene" hidden>
+    <img
+        src="images/Leo in Parking Lot.jpg"
+        alt="Leo waiting in his gray sedan"
+    >
+    <button id="leo-parking-continue" type="button">
+    Continue
+</button>
+</section>
+<!-- RAVEN INSIDE LEO'S CAR -->
+<section id="leo-backseat-scene" hidden>
+    <!-- RAVEN'S CALM METER -->
+<div id="raven-calm-meter" hidden>
+    <div class="calm-meter-header">
+        <span>RAVEN'S CALM</span>
+        <span id="calm-percentage">100%</span>
+    </div>
+
+    <div class="calm-meter-track">
+        <div id="calm-meter-fill"></div>
+    </div>
+</div>
+    <!-- RAVEN'S SHADOW FIGURE HALLUCINATION -->
+<video id="leo-shadow-flash" muted playsinline preload="auto" hidden>
+    <source src="video/brief flash of shadow.mp4" type="video/mp4">
+</video>
+
+    <button id="backseat-skip" class="cinematic-skip" type="button">
+        Skip ⏭
+    </button>
+
+   <video
+    id="leo-backseat-image"
+    muted loop playsinline preload="auto"
+    aria-label="Leo turns toward Raven and speaks from the driver's seat"
+>
+    <source src="video/leo-talking.mp4" type="video/mp4">
+</video>
+<!-- RAVEN'S SNOWY WINDOW VIEWS -->
+<div id="raven-winter-views" hidden>
+    <img
+        id="winter-sidewalk"
+        src="images/Snowy sidewalk.jpg"
+        alt="Snow-covered sidewalks on a sunny winter morning"
+    >
+
+    <img
+        id="winter-crosswalk"
+        src="images/Snowy Pedestrians.jpg"
+        alt="People crossing a snowy street"
+        hidden
+    >
+
+    <img
+        id="winter-trees"
+        src="images/Snowy Trees.jpg"
+        alt="Snow-covered trees in the morning sunlight"
+        hidden
+    >
+    <img id="tunnel-shadow-wall" src="images/Mysterious Shadow in a Rainy Tunnel.jpg" alt="Shadow on the tunnel wall" hidden>
+    <img id="tunnel-shadow-sidewalk" src="images/shadow figure in tunnel.jpg" alt="Shadow on the tunnel sidewalk" hidden>
+    <img id="tunnel-shadow-near-car" src="images/shadow figure near car.jpg" alt="Shadow near car" hidden>
+    <img id="tunnel-shadow-handprint" src="images/shadow handprint.jpg" alt="Shadow handprint" hidden>
+</div>
+
+<!-- RAVEN'S DASHBOARD HALLUCINATION -->
+<video id="raven-dashboard-glitch" muted playsinline preload="auto" hidden>
+    <source src="video/dash-glitch-ravenhands.mp4" type="video/mp4">
+</video>
+
+<!-- RAVEN'S GLITCHING CAR RADIO -->
+<audio id="raven-radio-glitch" preload="auto">
+    <source src="audio/fm radio glitch.mp3" type="audio/mpeg">
+</audio>
+
+<!-- RAVEN'S CALMING INSTRUCTION -->
+<div id="raven-calm-instruction" hidden>PRESS SPACEBAR TO STAY CALM</div>
+
+<button id="backseat-continue" type="button" hidden>Continue</button>
+</section>
+
+<!-- RAVEN ARRIVES AT WILLOW HALL -->
+<section id="willow-hall-scene" hidden>
+    <video id="willow-finale-video" playsinline preload="auto" style="width:100%;height:100%;object-fit:contain;background:#000">
+        <source src="video/Willow Hall.mp4" type="video/mp4">
+    </video>
+</section>
+<!-- FINAL EPISODE 2 CINEMATIC -->
+<div id="episode2-finale" hidden aria-live="polite">
+    <div id="episode2-final-words"></div>
+    <video id="episode2-suit-video" playsinline preload="auto" hidden>
+        <source src="video/man-in-suit-laughing.mp4" type="video/mp4">
+    </video>
+    <div id="episode2-end-card" hidden>
+        <h1>THE FEAR WITHIN</h1>
+        <p>EPISODE 2 COMPLETE</p>
+        <p>TO BE CONTINUED...</p>
+    </div>
+</div>
+
+<!-- RAVEN LOOKING OUT THE CAR WINDOW -->
+<section id="raven-window-scene" hidden>
+    <video id="raven-window-video"
+           autoplay muted loop playsinline preload="auto">
+        <source src="video/Raven-looking-out-window.mp4" type="video/mp4">
+    </video>
+
+    <div id="raven-dialogue-choices" hidden>
+        <button id="raven-choice-friendly" type="button">
+            Yes, please.
+        </button>
+
+        <button id="raven-choice-distant" type="button">
+            No, thank you.
+        </button>
+
+    </div>
+</section>
+<!-- RAVEN LOOKING AT PHOTOS ON HER IPHONE -->
+<section id="raven-photo-scene" hidden>
+    <img
+        id="raven-photo-image"
+        src="images/Luca and Raven.jpg"
+        alt="Raven looking at a photograph of herself and Luca"
+    >
+</section>
+
+<!-- HIGHWAY FOOTAGE (video file to be confirmed) -->
+<section id="leo-highway-scene" hidden>
+    <video id="leo-entering-highway-video" playsinline preload="auto" hidden></video>
+    <video id="christmas-billboard-video" playsinline preload="auto" hidden></video>
+    <video id="raven-hands-trembling-video" playsinline preload="auto" hidden>
+        <source src="video/Raven's hands trembling.mp4" type="video/mp4">
+    </video>
+    <div id="billboard-narration" hidden></div>
+</section>
+
+</body>
+</html>

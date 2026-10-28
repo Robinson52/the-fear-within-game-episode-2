@@ -1,0 +1,3318 @@
+
+/* ==========================================
+   THE FEAR WITHIN - EPISODE 2
+   COMPLETE STYLE.CSS
+   ========================================== */
+
+
+/* GLOBAL */
+
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: #000;
+    color: #eee;
+}
+
+body {
+    min-height: 100vh;
+    padding: 24px;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #e52b3b;
+    outline-offset: 5px;
+}
+
+
+/* ==========================================
+   MAIN MENU
+   ========================================== */
+
+#title-screen {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: calc(100vh - 48px);
+    padding: 60px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+}
+
+
+/* TV STATIC BACKGROUND */
+
+#title-screen #menu-background-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* DARK OVERLAY */
+
+#title-screen .menu-background-shade {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.6)
+    );
+}
+
+
+/* ==========================================
+   MAIN MENU TITLE
+   ========================================== */
+
+.author-name {
+    margin: 0 0 20px;
+
+    color: #c92332;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+#title-screen h1 {
+    margin: 0;
+
+    color: #e52b3b;
+
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    line-height: 1.1;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 18px rgba(229, 43, 59, 0.25);
+}
+
+#title-screen .subtitle {
+    margin: 24px 0 0;
+
+    color: #c92332;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+
+    line-height: 1.8;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   MENU BUTTONS
+   ========================================== */
+
+.game-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+    margin-top: 40px;
+}
+
+.game-menu button,
+.game-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: min(320px, 90%);
+    min-height: 58px;
+
+    padding: 16px 24px;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+
+    color: #c92332;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        text-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.game-menu button:hover,
+.game-menu a:hover,
+.game-menu button:focus-visible,
+.game-menu a:focus-visible {
+    background: #000;
+    border-color: #351014;
+
+    color: #ff3448;
+
+    text-shadow:
+        0 0 6px rgba(255, 52, 72, 0.9),
+        0 0 16px rgba(255, 52, 72, 0.65),
+        0 0 28px rgba(255, 52, 72, 0.35);
+}
+
+
+/* ==========================================
+   MENU DETAILS
+   ========================================== */
+
+#menu-audio-hint {
+    margin-top: 24px;
+
+    color: #c92332;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+
+    line-height: 1.8;
+}
+
+#menu-audio-hint span {
+    display: block;
+}
+
+#help-text {
+    max-width: 420px;
+    margin: 20px auto 0;
+
+    color: #c92332;
+    line-height: 1.7;
+}
+
+.credit {
+    margin: 56px 0 0;
+
+    color: #c92332;
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================
+   RANDOM MAIN MENU TV GLITCH
+   ========================================== */
+
+#title-screen.menu-glitch #menu-background-video {
+    animation: menu-tv-glitch 220ms steps(1, end);
+}
+
+#title-screen.menu-glitch h1 {
+    animation: menu-title-glitch 220ms steps(1, end);
+}
+
+@keyframes menu-tv-glitch {
+    0%,
+    100% {
+        transform: translateX(0);
+        filter: none;
+    }
+
+    20% {
+        transform: translateX(-3px);
+        filter: contrast(1.3) brightness(0.85);
+    }
+
+    45% {
+        transform: translateX(3px);
+        filter: contrast(1.5) brightness(1.05);
+    }
+
+    70% {
+        transform: translateX(-2px);
+        filter: contrast(1.2) brightness(0.9);
+    }
+}
+
+@keyframes menu-title-glitch {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-2px) skewX(-2deg);
+
+        text-shadow:
+            3px 0 #750014,
+            -2px 0 #ff6575;
+    }
+
+    45% {
+        transform: translateX(2px);
+
+        text-shadow:
+            -3px 0 #750014,
+            2px 0 #ff6575;
+    }
+
+    70% {
+        transform: translateX(-1px);
+    }
+}
+
+
+/* ==========================================
+   EPISODE 2 TITLE SCREEN
+   ========================================== */
+
+#episode-screen {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: calc(100vh - 48px);
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+    animation: none;
+}
+
+#episode-screen h2 {
+    margin: 0;
+
+    color: #c92332;
+
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 1.2;
+
+    text-shadow:
+        0 0 30px rgba(180, 0, 0, 0.25);
+}
+
+#episode-screen p {
+    margin: 24px 0 0;
+
+    color: #c92332;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   EPISODE 2 - DARKNESS CONSUMES THE TITLE
+   ========================================== */
+
+/* TITLE CONTAINER */
+
+.episode-title-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    text-align: center;
+
+    opacity: 0;
+}
+
+
+/* SLOW TITLE ENTRANCE */
+
+#episode-screen.title-reveal .episode-title-content {
+    animation: episode-title-entrance 2s ease-out forwards;
+}
+
+@keyframes episode-title-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* TITLE LETTERS */
+
+.episode-title-content h2,
+.episode-title-content p {
+    position: relative;
+    color: #c92332;
+}
+
+
+/* BLACK LAYER INSIDE THE LETTERS */
+
+.episode-title-content h2::after,
+.episode-title-content p::after {
+    content: attr(data-text);
+
+    position: absolute;
+    inset: 0;
+
+    color: #101012;
+
+    clip-path: inset(100% 0 0 0);
+
+    pointer-events: none;
+}
+
+
+/* DARKNESS RISING FROM THE BOTTOM */
+
+/* KEEP EPISODE 2 TITLE VISIBLE */
+
+#episode-screen.title-reveal .episode-title-content {
+    animation: episode-title-entrance 2s ease-out forwards;
+}
+
+#episode-screen.darkness-rising .episode-title-content {
+    opacity: 1;
+}
+
+/* DARKNESS INSIDE THE LETTERS */
+
+.episode-title-content h2::after,
+.episode-title-content p::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+
+    color: #303034;
+
+    text-shadow: 0 1px 1px rgba(150, 0, 0, 0.35);
+
+    clip-path: inset(100% 0 0 0);
+    pointer-events: none;
+}
+
+/* SLOW RISING DARKNESS */
+
+#episode-screen.darkness-rising h2::after,
+#episode-screen.darkness-rising p::after {
+    animation: darkness-rise-visible 4s ease-in-out forwards;
+}
+
+@keyframes darkness-rise-visible {
+    0% {
+        clip-path: inset(100% 0 0 0);
+    }
+
+    100% {
+        clip-path: inset(65% 0 0 0);
+    }
+}
+
+
+/* ==========================================
+   FINAL TITLE FLICKER
+   ========================================== */
+
+#episode-screen.title-flicker .episode-title-content {
+    animation: final-title-flicker 1.5s steps(1, end) forwards;
+}
+
+@keyframes final-title-flicker {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    15% {
+        opacity: 0.65;
+        transform: translateX(-2px);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translateX(2px);
+    }
+
+    40% {
+        opacity: 0.35;
+        transform: translateX(-3px);
+    }
+
+    55% {
+        opacity: 0.9;
+        transform: translateX(1px);
+    }
+
+    70% {
+        opacity: 0.4;
+        transform: translateX(-1px);
+    }
+
+    85% {
+        opacity: 0.2;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+
+/* ==========================================
+   EPISODE 2 BEDROOM
+   ========================================== */
+
+#episode2-opening {
+    min-height: 100vh;
+
+    padding: 30px 15px;
+    background: #000;
+}
+
+#episode2-opening.scene-enter {
+    animation: bedroom-fade-in 1.5s ease-in forwards;
+}
+
+@keyframes bedroom-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.episode2-scene {
+    position: relative;
+
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+    background: #000;
+}
+
+.episode2-image {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================
+   BEDROOM DIALOGUE
+   ========================================== */
+
+.episode2-dialogue {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 155px;
+
+    padding: 25px 30px;
+
+    color: #fff;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.95)
+    );
+
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+#episode2-text {
+    max-width: 900px;
+    min-height: 80px;
+
+    margin: 0 auto 20px;
+
+    font-size: 17px;
+    line-height: 1.7;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================
+   RED CONTINUE BUTTON
+   ========================================== */
+
+#episode2-continue {
+    display: block;
+
+    margin: 15px auto 0;
+    padding: 12px 35px;
+
+    background: rgba(30, 0, 0, 0.9);
+    color: #ff4545;
+
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 12px rgba(180, 0, 0, 0.45);
+
+    transition: all 0.3s ease;
+}
+
+#episode2-continue:hover {
+    background: #8b0000;
+    color: white;
+
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, 0.65);
+}
+
+
+/* ==========================================
+   TEMPORARY NEXT SCENE
+   ========================================== */
+
+#next-scene {
+    min-height: 100vh;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#next-scene h2 {
+    color: #c92332;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    #title-screen {
+        min-height: calc(100vh - 24px);
+        padding: 40px 12px;
+    }
+
+    #title-screen h1 {
+        letter-spacing: 2px;
+        white-space: normal;
+    }
+
+    .game-menu button,
+    .game-menu a {
+        font-size: 1rem;
+        min-height: 50px;
+    }
+
+    #episode-screen {
+        min-height: calc(100vh - 24px);
+    }
+
+    #episode2-opening {
+        padding: 12px;
+    }
+
+    .episode2-dialogue {
+        position: relative;
+
+        padding: 20px 15px;
+        background: #0b0b0d;
+    }
+
+    #episode2-text {
+        min-height: 0;
+        font-size: 16px;
+    }
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #title-screen.menu-glitch #menu-background-video,
+    #title-screen.menu-glitch h1,
+    #episode-screen.title-reveal .episode-title-content,
+    #episode-screen.darkness-rising h2::after,
+    #episode-screen.darkness-rising p::after,
+    #episode-screen.title-flicker .episode-title-content,
+    #episode2-opening.scene-enter {
+        animation: none;
+    }
+
+    #episode-screen.title-reveal .episode-title-content {
+        opacity: 1;
+    }
+
+    #episode-screen.title-flicker .episode-title-content {
+        opacity: 0;
+    }
+
+    #episode-screen.darkness-rising h2::after,
+    #episode-screen.darkness-rising p::after {
+        clip-path: inset(80% 0 0 0);
+    }
+}
+/* LARGER BEDROOM SCENE */
+
+#episode2-opening {
+    min-height: 0;
+    padding: 12px 0;
+}
+
+.episode2-scene {
+    max-width: 100%;
+}
+
+.episode2-image {
+    width: 100%;
+    height: min(82vh, 850px);
+    object-fit: cover;
+    object-position: center;
+}
+/* ==========================================
+   EPISODE 2 - PHONE BUZZING SCENE
+   ========================================== */
+
+#next-scene {
+    min-height: 0;
+    padding: 12px 0;
+    display: block;
+    background: #000;
+}
+
+.phone-scene {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.phone-video {
+    display: block;
+    width: 100%;
+    height: min(82vh, 850px);
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: scale(1);
+}
+
+#next-scene.phone-zoom .phone-video {
+    animation: phone-slow-zoom 8s ease-in-out forwards;
+}
+
+@keyframes phone-slow-zoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.13);
+    }
+}
+
+/* PHONE NARRATION */
+
+.phone-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 155px;
+    padding: 25px 30px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.95)
+    );
+
+    color: #fff;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+#phone-text {
+    max-width: 900px;
+    min-height: 60px;
+    margin: 0 auto 20px;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+#phone-continue {
+    display: block;
+    margin: 15px auto 0;
+    padding: 12px 35px;
+
+    background: rgba(30, 0, 0, 0.9);
+    color: #ff4545;
+
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 12px rgba(180, 0, 0, 0.45);
+}
+
+#phone-continue:hover {
+    background: #8b0000;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    #next-scene {
+        padding: 12px 0;
+    }
+
+    .phone-dialogue {
+        position: relative;
+        padding: 20px 15px;
+        background: #0b0b0d;
+    }
+
+    #phone-text {
+        min-height: 0;
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #next-scene.phone-zoom .phone-video {
+        animation: none;
+    }
+}
+/* RAVEN CHECKS HER PHONE */
+
+#phone-notification-scene {
+    width: 100%;
+    padding: 12px 0;
+    background: #000;
+}
+
+#phone-notification-scene .phone-scene {
+    position: relative;
+    overflow: hidden;
+}
+
+#phone-notification-scene img {
+    display: block;
+    width: 100%;
+    height: min(82vh, 850px);
+    object-fit: cover;
+    object-position: center;
+}
+
+#phone-notification-text {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    min-height: 60px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+#phone-notification-continue {
+    margin: 15px auto 0;
+    padding: 12px 35px;
+    background: rgba(30, 0, 0, 0.9);
+    color: #ff4545;
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+    font: 16px Georgia, serif;
+    cursor: pointer;
+}
+
+#phone-notification-continue:hover {
+    background: #8b0000;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    #phone-notification-scene .phone-dialogue {
+        position: relative;
+        padding: 20px 15px;
+        background: #0b0b0d;
+    }
+}
+
+/* ==========================================
+   EPISODE 2 - PHONE NOTIFICATION FIX
+   ========================================== */
+
+#phone-notification-scene {
+    width: 100%;
+    padding: 12px 0;
+    background: #000;
+}
+
+/* Keep the entire phone image visible */
+
+#phone-notification-scene .phone-scene {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Remove excessive cropping and zoom */
+
+#phone-notification-scene .phone-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+    animation: none;
+}
+
+/* Place narration below the image */
+
+#phone-notification-scene .phone-dialogue {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    min-height: 0;
+    padding: 22px 20px 28px;
+    background: #0b0b0d;
+    text-align: center;
+}
+
+/* Narration */
+
+#phone-notification-text {
+    max-width: 850px;
+    min-height: 0;
+    margin: 0 auto 20px;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* Continue button */
+
+#phone-notification-continue {
+    display: block;
+    margin: 15px auto 0;
+    padding: 12px 35px;
+    background: rgba(30, 0, 0, 0.9);
+    color: #ff4545;
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#phone-notification-continue:hover {
+    background: #8b0000;
+    color: #fff;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 600px) {
+
+    #phone-notification-scene .phone-video {
+        max-height: 65vh;
+    }
+
+    #phone-notification-scene .phone-dialogue {
+        padding: 18px 15px 24px;
+    }
+
+    #phone-notification-text {
+        font-size: 16px;
+    }
+}
+
+/* =====================================
+   GAME OBJECTIVES
+   ===================================== */
+
+.game-objective {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.objective-label {
+    color: #e9b866;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.objective-text {
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 21px;
+}
+
+/* =====================================
+   BACK AND CONTINUE BUTTONS
+   ===================================== */
+
+.scene-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.scene-controls button {
+    margin: 0;
+    min-width: 125px;
+}
+
+#phone-back,
+#notification-back {
+    padding: 12px 25px;
+    background: rgba(15, 15, 20, 0.95);
+    color: #ddd;
+    border: 1px solid #777;
+    border-radius: 4px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#phone-back:hover,
+#notification-back:hover {
+    background: #29292f;
+    color: #fff;
+}
+
+/* ==========================================
+   EPISODE 2 - TOP CORNER CONTROLS
+   ========================================== */
+
+/* Keep the scene as the positioning reference */
+#next-scene .phone-scene,
+#phone-notification-scene .phone-scene {
+    position: relative;
+}
+
+/* Objective notification - upper left */
+#phone-objective {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+
+    width: max-content;
+    max-width: calc(100% - 150px);
+    margin: 0;
+    padding: 15px 20px;
+
+    background: rgba(12, 10, 14, 0.93);
+    border: 1px solid rgba(150, 35, 45, 0.8);
+    border-left: 3px solid #b52b39;
+    border-radius: 4px;
+
+    text-align: left;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Animate when an objective is announced */
+#phone-objective.objective-active {
+    visibility: visible;
+    animation: objective-slide-in-out 4.2s ease forwards;
+}
+
+#phone-objective .objective-label {
+    color: #d9a6a6;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#phone-objective .objective-label::before {
+    content: "◇ ";
+}
+
+#phone-objective .objective-text {
+    color: #f3eeee;
+    font-family: Georgia, serif;
+    font-size: 17px;
+}
+
+@keyframes objective-slide-in-out {
+    0% {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    12%, 78% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+}
+
+/* Back buttons - upper right */
+#phone-back,
+#notification-back {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 25;
+
+    min-width: 0;
+    margin: 0;
+    padding: 10px 18px;
+
+    background: rgba(12, 12, 16, 0.9);
+    color: #e8e8e8;
+    border: 1px solid rgba(150, 150, 150, 0.55);
+    border-radius: 4px;
+
+    font: 15px Georgia, serif;
+    cursor: pointer;
+}
+
+#phone-back:hover,
+#notification-back:hover {
+    background: rgba(90, 15, 25, 0.95);
+    border-color: #c92332;
+    color: #fff;
+}
+
+/* Keep Continue centered in the narration */
+#next-scene .scene-controls,
+#phone-notification-scene .scene-controls {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    #phone-objective {
+        top: 12px;
+        left: 10px;
+        padding: 10px 12px;
+        max-width: calc(100% - 120px);
+    }
+
+    #phone-objective .objective-text {
+        font-size: 14px;
+    }
+
+    #phone-back,
+    #notification-back {
+        top: 12px;
+        right: 10px;
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #phone-objective.objective-active {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* ==========================================
+   PHONE NOTIFICATION - REMOVE BLACK BOX
+   ========================================== */
+
+#phone-notification-scene .phone-scene {
+    position: relative;
+    display: block;
+}
+
+#phone-notification-scene .phone-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+}
+
+#phone-notification-scene .phone-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 0;
+
+    padding: 65px 20px 20px;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 0, 0, 0.75)
+    );
+
+    text-align: center;
+}
+
+#phone-notification-text {
+    min-height: 0;
+    margin: 0 auto 15px;
+}
+
+#phone-notification-continue {
+    margin: 10px auto 0;
+}
+
+@media (max-width: 600px) {
+    #phone-notification-scene .phone-dialogue {
+        position: absolute;
+        padding: 45px 12px 12px;
+    }
+
+    #phone-notification-text {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================
+   BATHROOM MEDICINE CABINET SCENE
+   ========================================== */
+
+#bathroom-scene {
+    width: 100%;
+    padding: 12px 0;
+    background: #000;
+}
+
+.bathroom-image-container {
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.bathroom-image-container img {
+    display: block;
+    width: 100%;
+    height: min(82vh, 850px);
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Fade from darkness into the bathroom */
+#bathroom-scene.bathroom-reveal {
+    animation: bathroom-fade-in 2.5s ease-in-out both;
+}
+
+@keyframes bathroom-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Full-screen fade-to-black overlay */
+#scene-fade-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#scene-fade-overlay.fade-active {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .bathroom-image-container img {
+        height: auto;
+        max-height: 75vh;
+        object-fit: contain;
+    }
+}
+
+/* ==========================================
+   BATHROOM CONTINUE BUTTON - FINAL FIX
+   ========================================== */
+
+#bathroom-scene #bathroom-continue {
+    display: block;
+    width: fit-content;
+    min-width: 160px;
+    margin: 15px auto 0;
+    padding: 12px 35px;
+
+    background-color: #200000;
+    color: #ff4545;
+
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease,
+                color 0.3s ease;
+}
+
+#bathroom-scene #bathroom-continue:hover {
+    background-color: #8b0000;
+    color: #ffffff;
+}
+
+#bathroom-scene #bathroom-continue[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   INTERACTIVE PHONE PICKUP BUTTON
+   ========================================== */
+
+#next-scene .phone-pickup-button {
+    position: absolute;
+
+    /* Position over the phone */
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    padding: 12px 24px;
+
+    background: rgba(35, 0, 0, 0.92);
+    color: #ff4545;
+
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(180, 0, 0, 0.35);
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#next-scene .phone-pickup-button:hover {
+    background: #8b0000;
+    color: white;
+    box-shadow: 0 0 22px rgba(220, 0, 0, 0.6);
+}
+
+#next-scene .phone-pickup-button[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   FINAL PHONE PICKUP BUTTON FIX
+   ========================================== */
+
+#next-scene #phone-objective.phone-pickup-button {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 30;
+}
+
+/* Keep hidden until JavaScript shows it */
+#next-scene #phone-objective.phone-pickup-button[hidden] {
+    display: none !important;
+}
+
+/* Hide the old Continue button in phone scene */
+#next-scene #phone-continue {
+    display: none !important;
+}
+
+/* Make sure bathroom dialogue stays over the image */
+.bathroom-image-container {
+    position: relative;
+}
+
+.bathroom-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 20px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.85)
+    );
+
+    color: white;
+    text-align: center;
+}
+
+/* ==========================================
+   EPISODE 2 - HORROR CINEMATIC SCENES
+   ========================================== */
+
+#toothbrush-scene,
+#tv-static-scene {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: #000;
+}
+
+.horror-scene-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.horror-scene-image {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.5s ease;
+}
+
+.horror-scene-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 35px 25px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.85)
+    );
+
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+#tv-static-text {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Keep hidden scenes hidden */
+#toothbrush-scene[hidden],
+#tv-static-scene[hidden],
+#tv-static-dialogue[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   MYSTERIOUS MAN - EPISODE 2
+   ========================================== */
+
+#mysterious-man-scene {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+#mysterious-man-scene .horror-scene-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#mysterious-man-video {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* WATCH THE MAN BUTTON */
+
+#watch-man-button {
+    position: absolute;
+    bottom: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    padding: 14px 32px;
+
+    background: rgba(30, 0, 0, 0.94);
+    color: #ff4545;
+
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+
+    font-family: Georgia, serif;
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 18px rgba(180, 0, 0, 0.3);
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#watch-man-button:hover {
+    background: #8b0000;
+    color: white;
+    box-shadow: 0 0 25px rgba(220, 0, 0, 0.5);
+}
+
+/* NARRATION */
+
+#mysterious-man-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 25px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.88)
+    );
+
+    color: white;
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+#mysterious-man-text {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* KEEP HIDDEN ELEMENTS HIDDEN */
+
+#mysterious-man-scene[hidden],
+#watch-man-button[hidden],
+#mysterious-man-dialogue[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   MYSTERIOUS MAN - SLOW CAMERA ZOOM OUT
+   ========================================== */
+
+#mysterious-man-scene .horror-scene-container {
+    overflow: hidden;
+}
+
+#mysterious-man-video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+
+    /* Start slightly closer to the man */
+    transform: scale(1.18);
+    transform-origin: center center;
+}
+
+/* Triggered when the scene begins */
+#mysterious-man-scene.man-zoom-out #mysterious-man-video {
+    animation: mysterious-man-zoom-out 14s ease-out forwards;
+}
+
+@keyframes mysterious-man-zoom-out {
+    0% {
+        transform: scale(1.18);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ==========================================
+   SHADOW AUDIENCE - QUICK ZOOM OUT
+   ========================================== */
+
+#shadow-audience-scene {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+}
+
+#shadow-audience-scene .horror-scene-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#shadow-audience-image {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.16);
+}
+
+#shadow-audience-scene.audience-zoom-out
+#shadow-audience-image {
+    animation: audience-camera-pullback 4s ease-out forwards;
+}
+
+@keyframes audience-camera-pullback {
+    from {
+        transform: scale(1.16);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+#shadow-audience-scene[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   HOST FINAL CLOSE-UP
+   ========================================== */
+
+#host-closeup-scene {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+}
+
+#host-closeup-scene .horror-scene-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#host-closeup-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#host-closeup-scene[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   GLOWING EYES AND SINISTER HOST
+   ========================================== */
+
+#glowing-eyes-scene,
+#sinister-host-scene {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+}
+
+#glowing-eyes-scene .horror-scene-container,
+#sinister-host-scene .horror-scene-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#glowing-eyes-scene .horror-scene-image,
+#sinister-host-scene .horror-scene-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* QUICK ZOOM OUT ON THE AUDIENCE */
+
+.glowing-eyes-zoom .horror-scene-image {
+    animation: glowingEyesZoomOut 3s ease-out forwards;
+}
+
+@keyframes glowingEyesZoomOut {
+    from {
+        transform: scale(1.15);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* SLOW ZOOM IN ON THE SINISTER HOST */
+
+.sinister-host-zoom .horror-scene-image {
+    animation: sinisterHostZoomIn 5s ease-in-out forwards;
+}
+
+@keyframes sinisterHostZoomIn {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.18);
+    }
+}
+
+/* KEEP HIDDEN SCENES HIDDEN */
+
+#glowing-eyes-scene[hidden],
+#sinister-host-scene[hidden] {
+    display: none !important;
+}
+
+/* BLINKING EYES — BACK AWAY COMMAND */
+
+#glowing-eyes-scene .horror-scene-container {
+    position: relative;
+}
+
+#glowing-eyes-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#back-away-button {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    padding: 14px 32px;
+    border: 1px solid rgba(190, 35, 35, 0.8);
+    border-radius: 6px;
+
+    background: rgba(15, 0, 0, 0.85);
+    color: #fff;
+
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    box-shadow: 0 0 20px rgba(160, 0, 0, 0.35);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#back-away-button:hover {
+    background: rgba(100, 0, 0, 0.95);
+    box-shadow: 0 0 28px rgba(200, 0, 0, 0.6);
+}
+
+#back-away-button[hidden] {
+    display: none !important;
+}
+
+/* BACK AWAY - SPACEBAR INTERACTION */
+
+#back-away-prompt {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+
+    padding: 14px 24px;
+    background: rgba(12, 0, 0, 0.85);
+    border: 1px solid #8c2029;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+#back-away-progress {
+    display: block;
+    margin-top: 8px;
+    color: #dc6670;
+    font-size: 12px;
+}
+
+#back-away-prompt[hidden] {
+    display: none !important;
+}
+
+#glowing-eyes-video {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.18s ease-out;
+}
+
+/* SINISTER HOST ANIMATED VIDEO */
+
+#sinister-host-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Keep hidden scenes hidden */
+#sinister-host-scene[hidden] {
+    display: none !important;
+}
+
+/* TV TURN-OFF SCENE */
+
+#tv-turn-off-scene[hidden] {
+    display: none !important;
+}
+
+#tv-turn-off-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TAKE PILL INTERACTIVE OBJECTIVE */
+
+#bathroom-scene .bathroom-image-container {
+    position: relative;
+}
+
+#take-pill-button {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+
+    padding: 14px 34px;
+    background: rgba(85, 0, 0, 0.9);
+    border: 1px solid #d64545;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(180, 0, 0, 0.35);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#take-pill-button:hover {
+    background: rgba(145, 0, 0, 0.95);
+    box-shadow: 0 0 25px rgba(210, 0, 0, 0.6);
+}
+
+#take-pill-button[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   ELLIE PHONE CALL
+   ========================================== */
+
+#ellie-phone-call-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: #050508;
+}
+
+#ellie-phone-call-scene[hidden] {
+    display: none !important;
+}
+
+#ellie-phone-call-scene .horror-scene-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ellie-phone-call-background {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        #161620 0%,
+        #08080d 55%,
+        #000 100%
+    );
+}
+
+#ellie-phone-call-scene .horror-scene-dialogue {
+    position: absolute;
+    left: 50%;
+    bottom: 9%;
+    transform: translateX(-50%);
+    width: min(90%, 850px);
+    z-index: 2;
+    text-align: center;
+}
+
+/* ==========================================
+   EPISODE 2 - CONSISTENT CINEMATIC OVERLAYS
+   ========================================== */
+
+/* Bedroom and Ellie's phone call */
+#episode2-opening .episode2-dialogue,
+#ellie-phone-call-scene .horror-scene-dialogue {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    transform: none;
+
+    width: 100%;
+    min-height: 0;
+
+    padding: 70px 25px 25px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.25) 35%,
+        rgba(0, 0, 0, 0.65) 75%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+
+    color: white;
+    text-align: center;
+    z-index: 5;
+}
+
+/* Keep dialogue centered */
+#episode2-text,
+#ellie-phone-call-text {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #fff;
+    font-family: Georgia, serif;
+    line-height: 1.7;
+}
+
+/* Make Ellie's overlay follow the bedroom style */
+#ellie-phone-call-scene .horror-scene-dialogue {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: none;
+}
+
+/* Keep the overlay inside the bedroom image */
+#episode2-opening .episode2-scene {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    #episode2-opening .episode2-dialogue,
+    #ellie-phone-call-scene .horror-scene-dialogue {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        padding: 45px 15px 18px;
+
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 0, 0, 0.88)
+        );
+    }
+
+    #episode2-text,
+    #ellie-phone-call-text {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+}
+
+#ellie-phone-call-text {
+    color: #f2f0f0;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.7;
+    text-shadow: 0 2px 12px #000;
+}
+
+#answer-ellie-button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: rgba(110, 12, 20, 0.9);
+    color: white;
+    border: 1px solid #d45b65;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#answer-ellie-button:hover {
+    background: #a71d2a;
+}
+
+#answer-ellie-button[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   ELLIE PHONE CALL - CAMERA INTERACTION
+   ========================================== */
+
+#ellie-phone-call-scene .horror-scene-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#ellie-phone-call-scene .horror-scene-image[hidden] {
+    display: none !important;
+}
+
+#glance-tv-button {
+    margin-top: 18px;
+    padding: 12px 28px;
+
+    background: rgba(90, 12, 20, 0.9);
+    color: white;
+
+    border: 1px solid rgba(200, 60, 70, 0.8);
+    border-radius: 5px;
+
+    font-size: 15px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+#glance-tv-button:hover {
+    background: rgba(150, 20, 35, 0.95);
+}
+
+#glance-tv-button[hidden] {
+    display: none !important;
+}
+
+/* ELLIE PHONE CALL - BEDROOM CAMERA */
+
+#ellie-phone-call-scene .horror-scene-container {
+    position: relative;
+    overflow: hidden;
+}
+
+#ellie-bedroom-pov {
+    object-fit: contain !important;
+    object-position: center center;
+    transform: none !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================
+   EPISODE 2 - ELLIE PHONE CALL CHOICES
+   ========================================== */
+
+#ellie-phone-call-scene #glance-tv-button,
+#ellie-phone-call-scene #continue-ellie-conversation {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 230px;
+    min-height: 55px;
+    margin: 8px;
+
+    padding: 12px 18px;
+
+    background: rgba(65, 8, 12, 0.92);
+    border: 1px solid rgba(185, 55, 65, 0.8);
+    border-radius: 8px;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 12px rgba(110, 0, 0, 0.25);
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+/* HOVER EFFECT */
+
+#ellie-phone-call-scene #glance-tv-button:hover:not(:disabled),
+#ellie-phone-call-scene #continue-ellie-conversation:hover:not(:disabled) {
+    background: rgba(125, 15, 25, 0.95);
+    box-shadow: 0 0 20px rgba(200, 30, 40, 0.5);
+}
+
+/* WAITING FOR ELLIE TO FINISH SPEAKING */
+
+#ellie-phone-call-scene #continue-ellie-conversation:disabled {
+    background: rgba(45, 12, 17, 0.75);
+    border-color: rgba(120, 55, 60, 0.5);
+    color: rgba(255, 255, 255, 0.65);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* HIDDEN BUTTONS MUST STAY HIDDEN */
+
+#ellie-phone-call-scene #glance-tv-button[hidden],
+#ellie-phone-call-scene #continue-ellie-conversation[hidden] {
+    display: none !important;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    #ellie-phone-call-scene #glance-tv-button,
+    #ellie-phone-call-scene #continue-ellie-conversation {
+        width: min(230px, 90%);
+        margin: 6px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================
+   EPISODE 2 - PARTY PHOTO SCROLL BUTTON
+   ========================================== */
+
+#party-photos-scene #party-scroll-button {
+    display: block;
+    margin: 22px auto 10px;
+    padding: 12px 34px;
+
+    background: rgba(115, 8, 20, 0.92);
+    color: #ffffff;
+
+    border: 1px solid #d64a59;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 14px rgba(150, 0, 20, 0.25);
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#party-photos-scene #party-scroll-button:hover {
+    background: #a60e23;
+    box-shadow: 0 0 22px rgba(200, 20, 45, 0.5);
+    transform: translateY(-2px);
+}
+
+#party-photos-scene #party-scroll-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+}
+
+#party-photos-scene #party-scroll-button[hidden] {
+    display: none !important;
+}
+
+#party-tv-glance-button {
+    display: block;
+    margin: 16px auto;
+    padding: 10px 22px;
+    background: rgba(20, 20, 20, 0.9);
+    color: white;
+    border: 1px solid #a52222;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#party-tv-glance-button:hover {
+    background: #641313;
+}
+
+#party-tv-glance-button[hidden] {
+    display: none;
+}
+
+
+/* KITCHEN CONTACT SCENE */
+
+#kitchen-contact-scene {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+}
+
+#kitchen-contact-scene[hidden] {
+    display: none !important;
+}
+
+#kitchen-contact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* CINEMATIC PHONE CALL DIALOGUE */
+
+@keyframes cinematicDialogueFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cinematic-dialogue-fade {
+    animation: cinematicDialogueFade 0.55s ease-out both;
+}
+
+/* MOM PHONE CALL — CINEMATIC SUBTITLES */
+
+#mom-kitchen-call-dialogue .mom-call-subtitle {
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+}
+
+#mom-kitchen-call-dialogue .mom-call-fade-in {
+    animation: momSubtitleFadeIn 0.85s ease-out forwards;
+}
+
+#mom-kitchen-call-dialogue .mom-call-speaker {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #d7b5b5;
+    margin-bottom: 10px;
+}
+
+#mom-kitchen-call-dialogue .mom-call-words {
+    font-family: Georgia, serif;
+    font-size: clamp(17px, 2.2vw, 25px);
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes momSubtitleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    #mom-kitchen-call-dialogue .mom-call-speaker {
+        font-size: 11px;
+        margin-bottom: 7px;
+    }
+
+    #mom-kitchen-call-dialogue .mom-call-words {
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #mom-kitchen-call-dialogue .mom-call-fade-in {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+
+/* ELLIE & RAVEN — CINEMATIC PHONE DIALOGUE */
+
+#ellie-phone-call-text .cinematic-phone-subtitle {
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+    text-align: center;
+}
+
+#ellie-phone-call-text .cinematic-phone-speaker {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #d7b5b5;
+    margin-bottom: 10px;
+}
+
+#ellie-phone-call-text .cinematic-phone-words {
+    font-family: Georgia, serif;
+    font-size: clamp(17px, 2.2vw, 25px);
+    line-height: 1.6;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+#ellie-phone-call-text .cinematic-phone-fade {
+    animation: ellieDialogueFade 0.85s ease-out forwards;
+}
+
+@keyframes ellieDialogueFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    #ellie-phone-call-text .cinematic-phone-speaker {
+        font-size: 11px;
+    }
+
+    #ellie-phone-call-text .cinematic-phone-words {
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #ellie-phone-call-text .cinematic-phone-fade {
+        animation: none;
+        opacity: 1;
+    }
+}
+/* ==========================================
+   RAVEN'S RIDESHARE APP
+========================================== */
+
+#rideshare-scene[hidden],
+#rideshare-continue[hidden] {
+    display: none !important;
+}
+
+#rideshare-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 100002;
+    background: #07090e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.rideshare-phone {
+    width: 100%;
+    max-width: 390px;
+    max-height: 95vh;
+    overflow-y: auto;
+    background: #141821;
+    border: 2px solid #303744;
+    border-radius: 28px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.rideshare-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rideshare-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.rideshare-time {
+    font-size: 13px;
+    color: #aeb5c2;
+}
+
+.rideshare-map {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #dce5df;
+}
+
+.rideshare-map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.rideshare-details {
+    margin-top: 20px;
+}
+
+.rideshare-status {
+    font-size: 13px;
+    color: #aeb5c2;
+    margin-bottom: 15px;
+}
+
+.rideshare-driver {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #202632;
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.rideshare-driver h2 {
+    font-size: 22px;
+    margin: 0 0 5px;
+    color: white;
+}
+
+.rideshare-driver p {
+    margin: 0;
+    color: #aeb5c2;
+    font-size: 13px;
+}
+
+.rideshare-arrival {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.rideshare-arrival strong {
+    font-size: 22px;
+    color: #70c7ff;
+}
+
+.rideshare-arrival span {
+    font-size: 12px;
+    color: #aeb5c2;
+}
+
+#rideshare-narration {
+    color: #e1e4ec;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 24px 0;
+    font-style: italic;
+}
+
+#rideshare-continue {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #a51927;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#rideshare-continue:hover {
+    background: #d12537;
+}
+
+@media (max-width: 480px) {
+    #rideshare-scene {
+        padding: 10px;
+    }
+
+    .rideshare-phone {
+        padding: 16px;
+        border-radius: 20px;
+    }
+}
+/* RAVEN GETTING READY SCENE */
+
+#raven-getting-ready-scene {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 100002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#raven-getting-ready-scene[hidden] {
+    display: none;
+}
+
+.getting-ready-content {
+    width: 90%;
+    max-width: 750px;
+    text-align: center;
+}
+
+#getting-ready-text {
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 100003;
+}
+
+@keyframes gettingReadyFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* ==================================
+   EPISODE 2 — CINEMATIC NAVIGATION
+   ================================== */
+
+.cinematic-skip,
+.cinematic-back {
+    position: absolute;
+    top: 20px;
+    z-index: 100010;
+
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+
+    font-family: Georgia, serif;
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: background 0.3s ease,
+                border-color 0.3s ease;
+}
+
+/* Skip — upper-left */
+.cinematic-skip {
+    left: 20px;
+}
+
+/* Back — upper-right */
+.cinematic-back {
+    right: 20px;
+}
+
+/* Hover effects */
+.cinematic-skip:hover,
+.cinematic-back:hover {
+    background: rgba(120, 0, 0, 0.8);
+    border-color: #cc3333;
+}
+
+/* Keep hidden buttons hidden */
+.cinematic-skip[hidden],
+.cinematic-back[hidden] {
+    display: none;
+}
+/* Keep original Back buttons consistent */
+
+#phone-back,
+#notification-back {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: auto;
+
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+
+    font-family: Georgia, serif;
+    font-size: 15px;
+    cursor: pointer;
+
+    z-index: 100010;
+}
+
+#phone-back:hover,
+#notification-back:hover {
+    background: rgba(120, 0, 0, 0.8);
+    border-color: #cc3333;
+}
+/* =====================================
+   EPISODE 2 — LEO'S CAR SCENES
+   ===================================== */
+
+#leo-car-scene,
+#leo-backseat-scene {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 100005;
+    overflow: hidden;
+}
+
+/* Keep scenes hidden until JavaScript opens them */
+#leo-car-scene[hidden],
+#leo-backseat-scene[hidden] {
+    display: none !important;
+}
+
+/* Cinematic full-screen images */
+#leo-car-image,
+#leo-backseat-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Continue buttons */
+#leo-car-continue,
+#backseat-continue {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100010;
+
+    padding: 12px 35px;
+    background: rgba(20, 0, 0, 0.85);
+    color: #ff5555;
+    border: 1px solid #a31616;
+    border-radius: 6px;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#leo-car-continue:hover,
+#backseat-continue:hover {
+    background: rgba(100, 0, 0, 0.9);
+}
+
+#leo-car-continue[hidden],
+#backseat-continue[hidden] {
+    display: none !important;
+}
+/* RAVEN APPROACHES LEO'S CAR */
+
+#leo-car-image {
+    animation: leoCarWalkZoom 5s ease-in-out forwards;
+    transform-origin: center center;
+}
+
+@keyframes leoCarWalkZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+/* LEO'S HIGHWAY SCENE */
+
+/* LEO'S HIGHWAY SCENE */
+
+#leo-highway-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 100005;
+    overflow: hidden;
+}
+
+#leo-highway-scene[hidden] {
+    display: none !important;
+}
+
+
+/* HIGHWAY CINEMATIC VIDEOS */
+#leo-entering-highway-video,
+#christmas-billboard-video,
+#raven-hands-trembling-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Keep inactive videos hidden */
+#leo-entering-highway-video[hidden],
+#christmas-billboard-video[hidden],
+#raven-hands-trembling-video[hidden] {
+    display: none !important;
+}
+
+
+/* Hide the shadow video until its turn */
+#shadow-billboard-video[hidden] {
+    display: none !important;
+}
+/* =====================================
+   EPISODE 2 — BILLBOARD NARRATION
+   ===================================== */
+
+#billboard-narration {
+    position: fixed;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 850px;
+
+    color: #fff;
+    font-size: clamp(17px, 2vw, 24px);
+    font-family: Georgia, serif;
+    text-align: center;
+    line-height: 1.6;
+
+    text-shadow: 2px 2px 8px #000;
+    z-index: 100010;
+    pointer-events: none;
+}
+
+#billboard-narration[hidden] {
+    display: none !important;
+}
+/* =====================================
+   EPISODE 2 — LEO'S TOWN DRIVE & RED LIGHT
+   ===================================== */
+
+#leo-town-scene,
+#leo-red-light-scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 100005;
+    overflow: hidden;
+}
+
+/* Hide scenes until JavaScript activates them */
+#leo-town-scene[hidden],
+#leo-red-light-scene[hidden] {
+    display: none !important;
+}
+
+/* Cinematic video sizing */
+#leo-town-video,
+#leo-red-light-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* EPISODE 2 — RAVEN LOOKING OUT THE WINDOW */
+
+#raven-window-scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 100006;
+    overflow: hidden;
+}
+
+#raven-window-scene[hidden],
+#raven-dialogue-choices[hidden] {
+    display: none !important;
+}
+
+#raven-window-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* INTERACTIVE DIALOGUE CHOICES */
+
+#raven-dialogue-choices {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 480px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10;
+}
+
+#raven-dialogue-choices button {
+    padding: 14px 20px;
+    background: rgba(10, 10, 15, 0.88);
+    color: #fff;
+    border: 1px solid rgba(190, 50, 50, 0.7);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#raven-dialogue-choices button:hover {
+    background: rgba(110, 20, 30, 0.95);
+    border-color: #ff5555;
+}
+
+#raven-dialogue-choices button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    #raven-dialogue-choices {
+        bottom: 5%;
+    }
+
+    #raven-dialogue-choices button {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+}
+/* =====================================
+   LEO'S OPENING DIALOGUE CHOICES
+   ===================================== */
+
+#leo-opening-choices:not([hidden]) {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(90%, 430px);
+}
+
+#leo-opening-choices[hidden] {
+    display: none !important;
+}
+
+#leo-opening-choices button {
+    background: rgba(15, 15, 15, 0.88);
+    color: white;
+    border: 1px solid rgba(190, 35, 35, 0.8);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#leo-opening-choices button:hover {
+    background: rgba(110, 15, 15, 0.95);
+    border-color: #ff5555;
+}
+
+@media (max-width: 600px) {
+    #leo-opening-choices:not([hidden]) {
+        bottom: 18%;
+        width: 88%;
+    }
+
+    #leo-opening-choices button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+/* RAVEN'S PHONE GALLERY SCENE */
+#raven-photo-scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 100007;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#raven-photo-scene[hidden] {
+    display: none;
+}
+
+#raven-photo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* LEO WAITING IN THE PARKING LOT */
+#leo-parking-lot-scene {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 100006;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#leo-parking-lot-scene[hidden] {
+    display: none;
+}
+
+#leo-parking-lot-scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* LEO'S PARKING LOT CONTINUE BUTTON */
+#leo-parking-continue {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    padding: 14px 42px;
+    background: #8b0000;
+    color: white;
+    border: 1px solid #c0392b;
+    border-radius: 8px;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#leo-parking-continue:hover {
+    background: #b22222;
+}
+/* SHADOW FIGURE HALLUCINATION */
+#leo-shadow-flash {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    z-index: 5;
+}
+
+#leo-shadow-flash[hidden] {
+    display: none;
+}
+/* WILLOW HALL ARRIVAL SCENE */
+#willow-hall-scene {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 100007;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#willow-hall-scene[hidden] {
+    display: none;
+}
+
+#willow-hall-scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* RAVEN'S CALM METER */
+#raven-calm-meter {
+    position: absolute;
+    top: 70px;
+    right: 25px;
+    width: 210px;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.78);
+    border: 1px solid rgba(150, 40, 40, 0.65);
+    border-radius: 7px;
+    z-index: 100020;
+    font-family: Georgia, serif;
+    color: #fff;
+}
+
+#raven-calm-meter[hidden] {
+    display: none;
+}
+
+.calm-meter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 9px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.calm-meter-track {
+    width: 100%;
+    height: 9px;
+    background: #292929;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#calm-meter-fill {
+    width: 100%;
+    height: 100%;
+    background: #668f80;
+    border-radius: 10px;
+    transition: width 0.3s ease, background-color 0.6s ease, box-shadow 0.6s ease;
+}
+/* RAVEN'S SNOWY WINDOW VIEWS */
+#raven-winter-views {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+    background: #000;
+}
+
+#raven-winter-views[hidden],
+#raven-winter-views img[hidden] {
+    display: none;
+}
+
+#raven-winter-views img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+#raven-winter-views img.active {
+    opacity: 1;
+    
+}
+/* Keep the incoming winter image above the outgoing image */
+#raven-winter-views img.active {
+    z-index: 2;
+}
+/* RAVEN'S DASHBOARD HALLUCINATION */
+#raven-dashboard-glitch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 6;
+    background: #000;
+}
+
+#raven-dashboard-glitch[hidden] {
+    display: none;
+}
+/* RAVEN'S CALMING INSTRUCTION */
+#raven-calm-instruction {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100021;
+
+    padding: 12px 22px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(190, 55, 55, 0.7);
+    border-radius: 6px;
+
+    color: #f0e8e8;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-align: center;
+    white-space: nowrap;
+
+    animation: calmPromptPulse 1.5s ease-in-out infinite;
+}
+
+#raven-calm-instruction[hidden] {
+    display: none;
+}
+
+@keyframes calmPromptPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 600px) {
+    #raven-calm-instruction {
+        font-size: 11px;
+        letter-spacing: 1px;
+        padding: 10px 12px;
+    }
+}
+/* RAVEN'S CALM METER — HEARTBEAT EFFECT */
+@keyframes ravenCalmHeartbeat {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(180, 35, 45, 0);
+    }
+
+    15% {
+        transform: scale(1.04);
+        box-shadow: 0 0 16px rgba(180, 35, 45, 0.45);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.025);
+        box-shadow: 0 0 10px rgba(180, 35, 45, 0.25);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+/* Activates when Raven's calm drops */
+#raven-calm-meter.calm-danger {
+    animation: ravenCalmHeartbeat 1.3s ease-in-out infinite;
+}
+/* RAVEN'S CALM METER — GLITCHING PERCENTAGE */
+@keyframes ravenCalmGlitch {
+    0%, 85%, 100% {
+        opacity: 1;
+        transform: translateX(0);
+        text-shadow: none;
+    }
+
+    88% {
+        opacity: 0.5;
+        transform: translateX(-2px);
+        text-shadow: 2px 0 #b94040;
+    }
+
+    92% {
+        opacity: 1;
+        transform: translateX(2px);
+        text-shadow: -2px 0 #668f80;
+    }
+
+    96% {
+        opacity: 0.7;
+        transform: translateX(-1px);
+    }
+}
+
+#calm-percentage.calm-glitch {
+    display: inline-block;
+    animation: ravenCalmGlitch 0.8s steps(2) infinite;
+}
